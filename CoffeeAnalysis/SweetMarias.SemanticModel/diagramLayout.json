@@ -1,0 +1,151 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 423,
+        "y": 245
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1126.3830500146937,
+            "y": 57
+          },
+          "nodeIndex": "Coffee",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1400.3830500146937,
+            "y": 155
+          },
+          "nodeIndex": "CoffeeStats",
+          "nodeLineageTag": "b899ca67-b0c2-48a5-bf1c-af0ba9ef84a8",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1222.3830500146937,
+            "y": 411
+          },
+          "nodeIndex": "Cupping Notes",
+          "nodeLineageTag": "5a185dc0-fdcf-47d2-8929-1f59c1e6da4f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 525.38305001469371,
+            "y": 453
+          },
+          "nodeIndex": "Flavor Profile",
+          "nodeLineageTag": "3d77e651-1cd9-4d49-975e-1a977fb7ecc5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1709.3830500146937,
+            "y": 145
+          },
+          "nodeIndex": "sweetMariasReference",
+          "nodeLineageTag": "67358089-c7bb-4fc2-be89-5cb9bbc3ec48",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 847.38305001469371,
+            "y": 405.5
+          },
+          "nodeIndex": "sweetMarias",
+          "nodeLineageTag": "708b27f3-8c5c-48eb-badb-e21ad6023ee1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1983.3830500146937,
+            "y": 329.5
+          },
+          "nodeIndex": "Countries",
+          "nodeLineageTag": "21b08208-8e67-4ca6-9784-561ef1b1c0f2",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1045.3830500146937,
+            "y": 764.5
+          },
+          "nodeIndex": "Location",
+          "nodeLineageTag": "4d87e544-98dc-4cb5-a58d-2a3720ca25fd",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 785.38305001469371,
+            "y": 771.25
+          },
+          "nodeIndex": "sweetMariasLocations",
+          "nodeLineageTag": "1904dfcd-aaeb-4d6b-b184-189e91ba5cf9",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2257.3830500146937,
+            "y": 340.625
+          },
+          "nodeIndex": "json?address=Ethiopia+Guji+Zone&key=AIzaSyAAwswRQD1nHtQfJC53OS-c24MVHbuPLGQ",
+          "nodeLineageTag": "49c32854-6722-4cda-a4d2-1536a2095743",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
