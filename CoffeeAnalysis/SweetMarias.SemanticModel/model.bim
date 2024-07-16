@@ -1,0 +1,3106 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Coffee\",\"CoffeeStats\",\"sweetMariasReference\",\"Cupping Notes\",\"Flavor Profile\",\"sweetMarias\",\"Countries\",\"Location\",\"sweetMariasLocations\",\"Errors in Cupping Notes\",\"Errors in Flavor Profile\",\"json?address=Ethiopia+Guji+Zone&key=AIzaSyAAwswRQD1nHtQfJC53OS-c24MVHbuPLGQ\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.130.930.0 (24.06)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "Errors in Cupping Notes",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "Source = #\"Cupping Notes\",",
+          "  #\"Detected Type Mismatches\" = let",
+          "    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),",
+          "    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),",
+          "    fieldNames = Record.FieldNames(recordTypeFields),",
+          "    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),",
+          "    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = \"The type of the value does not match the type of the column.\", Detail = v], fieldTypes{i}})",
+          "in",
+          "    Table.TransformColumns(Source, pairs),",
+          "  #\"Added Index\" = Table.AddIndexColumn(#\"Detected Type Mismatches\", \"Row Number\" ,1),",
+          "  #\"Kept Errors\" = Table.SelectRowsWithErrors(#\"Added Index\", {\"Name\", \"Attribute\", \"Value\"}),",
+          "  #\"Reordered Columns\" = Table.ReorderColumns(#\"Kept Errors\", {\"Row Number\", \"Name\", \"Attribute\", \"Value\"})",
+          "in",
+          "  #\"Reordered Columns\""
+        ],
+        "kind": "m",
+        "lineageTag": "2b776ab3-504d-4d6e-be2c-2af37dfcba33",
+        "queryGroup": "Query Errors - 07/11/2024 10:49:23"
+      },
+      {
+        "name": "Errors in Flavor Profile",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "Source = #\"Flavor Profile\",",
+          "  #\"Detected Type Mismatches\" = let",
+          "    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),",
+          "    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),",
+          "    fieldNames = Record.FieldNames(recordTypeFields),",
+          "    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),",
+          "    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = \"The type of the value does not match the type of the column.\", Detail = v], fieldTypes{i}})",
+          "in",
+          "    Table.TransformColumns(Source, pairs),",
+          "  #\"Added Index\" = Table.AddIndexColumn(#\"Detected Type Mismatches\", \"Row Number\" ,1),",
+          "  #\"Kept Errors\" = Table.SelectRowsWithErrors(#\"Added Index\", {\"Name\", \"Attribute\", \"Value\"}),",
+          "  #\"Reordered Columns\" = Table.ReorderColumns(#\"Kept Errors\", {\"Row Number\", \"Name\", \"Attribute\", \"Value\"})",
+          "in",
+          "  #\"Reordered Columns\""
+        ],
+        "kind": "m",
+        "lineageTag": "4c373751-8e00-48d3-8809-a3d82d13a767",
+        "queryGroup": "Query Errors - 07/11/2024 10:49:23"
+      }
+    ],
+    "queryGroups": [
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "0"
+          }
+        ],
+        "description": "Errors in queries that were loaded on 07/10/2024 09:41:34.",
+        "folder": "Query Errors - 07/10/2024 09:41:34"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "1"
+          }
+        ],
+        "description": "Errors in queries that were loaded on 07/11/2024 10:49:23.",
+        "folder": "Query Errors - 07/11/2024 10:49:23"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "ff587459-c251-7bcc-e2c1-b88d1b544b58",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Name",
+        "fromTable": "Flavor Profile",
+        "toColumn": "Name",
+        "toTable": "sweetMarias"
+      },
+      {
+        "name": "59bfda3a-72ad-dad7-b70c-27426a4cccc1",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Name",
+        "fromTable": "Cupping Notes",
+        "toColumn": "Name",
+        "toTable": "sweetMarias"
+      },
+      {
+        "name": "589695a7-8011-4f6d-bf2a-ce2219a72e18",
+        "fromColumn": "ArrivalDate",
+        "fromTable": "sweetMarias",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_52170026-7412-47f7-a4ed-83cce4d49fb8"
+      },
+      {
+        "name": "e11207a5-4198-58f3-cf9c-a711632cc82d",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Name",
+        "fromTable": "Location",
+        "toColumn": "Name",
+        "toTable": "sweetMarias"
+      },
+      {
+        "name": "6a08b140-53d8-01de-9c7b-2cf34b010e30",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Name",
+        "fromTable": "sweetMariasLocations",
+        "toColumn": "Name",
+        "toTable": "sweetMarias"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "DateTableTemplate_00120b83-848c-4182-b480-d60ff36aed89",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "69fa29dc-e839-4f84-ab8e-5e636c8aa905",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "f179ded0-f80e-4eb4-b5aa-85687d8c690a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "b317bf2f-87d8-4629-a615-cc3b0261970b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "97a80da8-7f29-45b3-8196-f433c8959d06",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "9e144673-9b52-4c66-abe7-3e9e3aa0d2af",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "cbf1450b-91db-4927-a319-2fee8016b685",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "e366249f-8eae-4b9b-81f6-30a741018b70",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "2569b36d-e09d-453e-a745-74c9cca8d21f",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "ba65248d-e0e1-461a-9c53-0b29d32a48f8",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "b99343f4-ad3d-4420-b53c-423f3feb0531",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "f5aaf90a-34c2-4330-b428-b6a6b8d117a4",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "49e80de5-1f61-4461-8e87-633c07f37424"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "3b0fede9-bda0-45ed-89d8-aeb5255f1017",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_00120b83-848c-4182-b480-d60ff36aed89",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Coffee",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Country",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f1cd3d80-5620-427e-8fd9-8312f216c0c1",
+            "sourceColumn": "Country",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d2f19167-556d-45af-9096-c927da7e4030",
+            "sourceColumn": "Year",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Arabica Production",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "51e7b908-4d3a-40dc-a70c-d6f7763a0166",
+            "sourceColumn": "Arabica Production",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Bean Exports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "ac7e1535-0058-4320-8392-b02b0b1d31ca",
+            "sourceColumn": "Bean Exports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Bean Imports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ba9b7595-1643-4f3e-a3de-33ac94ce8c31",
+            "sourceColumn": "Bean Imports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Beginning Stocks",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a9c5bea5-2023-4668-80fc-9ff6804d3724",
+            "sourceColumn": "Beginning Stocks",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Domestic Consumption",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "aebadffc-4e4c-4090-99d3-266f86b0c1e2",
+            "sourceColumn": "Domestic Consumption",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Ending Stocks",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "29163a2c-32c5-4f98-9404-679c3df402fa",
+            "sourceColumn": "Ending Stocks",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Exports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c00bc27c-8e02-4302-a6d3-9d265024eca2",
+            "sourceColumn": "Exports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Imports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "99312e86-dc11-4b84-8f96-1dd64d93dd8d",
+            "sourceColumn": "Imports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Other Production",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b6eebf83-cac4-4153-9f58-17e2ea54a600",
+            "sourceColumn": "Other Production",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Production",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "#,0",
+            "lineageTag": "eb3b5742-0b04-4377-a9a0-e59c2f05bf62",
+            "sourceColumn": "Production",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Roast & Ground Exports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ae3c4f5d-566a-4fad-9082-a750e6b3d183",
+            "sourceColumn": "Roast & Ground Exports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Roast & Ground Imports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "be8b90d7-8d86-497e-88f4-72d28a8e0b9c",
+            "sourceColumn": "Roast & Ground Imports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Robusta Production",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7b3d63ef-5f72-427d-8965-f057545e5875",
+            "sourceColumn": "Robusta Production",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Rst,Ground Dom. Consum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "263a36ad-a9d3-4102-9447-c6e0a15c7e9e",
+            "sourceColumn": "Rst,Ground Dom. Consum",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Soluble Dom. Cons.",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fd069fb9-7530-4785-b0c1-89c3c963d1b5",
+            "sourceColumn": "Soluble Dom. Cons.",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Soluble Exports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "2b50da1e-9a61-45a6-8b4c-01893b43a21a",
+            "sourceColumn": "Soluble Exports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Soluble Imports",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4e2a51ac-9f22-43a1-9020-00a81b1bdfa5",
+            "sourceColumn": "Soluble Imports",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total Distribution",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "dbb36cdc-2523-4563-9e76-921489db4818",
+            "sourceColumn": "Total Distribution",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total Supply",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8c9bd083-7b7c-4b35-8775-91a74706f247",
+            "sourceColumn": "Total Supply",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "64d76b87-522c-44ae-81ba-d21518a43bca",
+        "measures": [
+          {
+            "name": "RobustaArabicaRatio",
+            "expression": "max(Coffee[Robusta Production])/max(Coffee[Arabica Production])",
+            "formatString": "0%;-0%;0%",
+            "lineageTag": "7afbc0c2-5512-4e53-8f70-c4633699ede8"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Coffee",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\tkn\\Downloads\\psd_coffee.csv\"),[Delimiter=\",\", Columns=21, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Country\", type text}, {\"Year\", Int64.Type}, {\"Arabica Production\", Int64.Type}, {\"Bean Exports\", Int64.Type}, {\"Bean Imports\", Int64.Type}, {\"Beginning Stocks\", Int64.Type}, {\"Domestic Consumption\", Int64.Type}, {\"Ending Stocks\", Int64.Type}, {\"Exports\", Int64.Type}, {\"Imports\", Int64.Type}, {\"Other Production\", Int64.Type}, {\"Production\", Int64.Type}, {\"Roast & Ground Exports\", Int64.Type}, {\"Roast & Ground Imports\", Int64.Type}, {\"Robusta Production\", Int64.Type}, {\"Rst,Ground Dom. Consum\", Int64.Type}, {\"Soluble Dom. Cons.\", Int64.Type}, {\"Soluble Exports\", Int64.Type}, {\"Soluble Imports\", Int64.Type}, {\"Total Distribution\", Int64.Type}, {\"Total Supply\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "CoffeeStats",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "b899ca67-b0c2-48a5-bf1c-af0ba9ef84a8",
+        "measures": [
+          {
+            "name": "Smallest Exports by Country",
+            "expression": [
+              "",
+              "VAR BottomCountry = ",
+              "    TOPN(",
+              "        1, ",
+              "        SUMMARIZE(",
+              "            FILTER('coffee', Coffee[Bean Exports]>0),",
+              "            'coffee'[country], ",
+              "            \"Total Exports\", SUM('coffee'[bean exports])",
+              "        ), ",
+              "        [Total Exports], ",
+              "        ASC",
+              "    )",
+              "VAR CountryName = MAXX(BottomCountry, 'coffee'[country])",
+              "VAR TotalExports = MAXX(BottomCountry, [Total Exports])",
+              "RETURN",
+              "    CountryName & \" - \" & FORMAT(TotalExports, \"#,##0\")"
+            ],
+            "lineageTag": "2ae132f3-1c55-4763-9123-a81c988ba312"
+          },
+          {
+            "name": "Top Country with Exports",
+            "expression": [
+              "",
+              "VAR TopCountry = ",
+              "    TOPN(",
+              "        1, ",
+              "        SUMMARIZE(",
+              "            'coffee', ",
+              "            'coffee'[country], ",
+              "            \"Total Exports\", SUM('coffee'[bean exports])",
+              "        ), ",
+              "        [Total Exports], ",
+              "        DESC",
+              "    )",
+              "VAR CountryName = MAXX(TopCountry, 'coffee'[country])",
+              "VAR TotalExports = MAXX(TopCountry, [Total Exports])",
+              "RETURN",
+              "    CountryName & \" - \" & FORMAT(TotalExports, \"#,##0\")"
+            ],
+            "lineageTag": "f8258d7e-21f1-40e2-97c6-f8c407cd8c84"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CoffeeStats",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "sweetMariasReference",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "changedProperties": [
+          {
+            "property": "IsHidden"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "e9ddb9c3-10e9-421a-8feb-01016ef08b21",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Description",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "a28c0f74-c081-48be-9c3a-60e313f6f185",
+            "sourceColumn": "Description",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Process Method",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "2eb7766e-2cdd-40cb-b0d7-48e758f8bab4",
+            "sourceColumn": "Process Method",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Total Score",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "8305b75c-8198-4e6a-b0ab-a5dd07e0aed8",
+            "sourceColumn": "Total Score",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cultivar",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "ab475666-8182-4d5f-bcb6-0d07048cc159",
+            "sourceColumn": "Cultivar",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Farm Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "4c9a95a6-e932-4be9-a6e9-1a91c58b4de6",
+            "sourceColumn": "Farm Gate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "db1a2ff6-ff30-4c0b-b0f3-4a9232b0e12a",
+            "sourceColumn": "Region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Processing",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "94bfd563-a8e0-4bc0-8b32-0aee4c77f832",
+            "sourceColumn": "Processing",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Drying Method",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "7ca6d3ea-f734-4e3d-96d5-3db509e62991",
+            "sourceColumn": "Drying Method",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Arrival Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "a1a7f1dc-685f-4441-9c7e-73a322062100",
+            "sourceColumn": "Arrival Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Lot Size",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "daeb0d72-fbd8-4847-ba12-ccf775a1903a",
+            "sourceColumn": "Lot Size",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Bag Size",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "2974307a-85e0-4f9c-b83b-98cf55b3f4c0",
+            "sourceColumn": "Bag Size",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Packaging",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "ef701342-fb90-480e-815d-74234b297687",
+            "sourceColumn": "Packaging",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cultivar Detail",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "7e116049-2668-4e77-9b92-685a3576ba55",
+            "sourceColumn": "Cultivar Detail",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Grade",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "5a0efe6b-1270-43ff-8159-1af12d60627b",
+            "sourceColumn": "Grade",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Appearance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "029fb42c-de31-4d29-b266-6b6349b33e0e",
+            "sourceColumn": "Appearance",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Roast Recommendations",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "0a5bed48-899e-439f-b07b-942ae61cbb19",
+            "sourceColumn": "Roast Recommendations",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "11895224-5e78-4e78-a4b4-59da714dee60",
+            "sourceColumn": "Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DryFragrance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "33e30ec8-4b4c-4874-b3e8-3428c217fce3",
+            "sourceColumn": "DryFragrance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "WetAroma",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "8ed3ae16-8c0c-404a-8f83-128b366f9d70",
+            "sourceColumn": "WetAroma",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Brightness",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "86735518-4d4f-4431-8a28-47c7b6105484",
+            "sourceColumn": "Brightness",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "CupBody",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "897de83e-a23a-427e-aece-ec98be725b1c",
+            "sourceColumn": "CupBody",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Finish",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "002fa5fa-5735-48f5-83b9-d94d4fb1022a",
+            "sourceColumn": "Finish",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Sweetness",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "ce000800-2d63-40f3-9b0c-a06db9008ed8",
+            "sourceColumn": "Sweetness",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "CleanCup",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "7237ae4a-4276-41a6-9e29-e52447d232b4",
+            "sourceColumn": "CleanCup",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Complexity",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "f1a3ca78-1cea-464a-94b2-e01c24c0d2cd",
+            "sourceColumn": "Complexity",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Uniformity",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "df54ff20-d3c6-4f4f-8a39-b4857b9d7b11",
+            "sourceColumn": "Uniformity",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Floral",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "9f311a9f-7093-476d-8344-4bef42240be0",
+            "sourceColumn": "Floral",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Honey",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "a2e5e6f5-7156-42fc-8dda-6d49766ff57f",
+            "sourceColumn": "Honey",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Sugar",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "cee9fd05-343d-46c1-b18c-e69f020c0d8e",
+            "sourceColumn": "Sugar",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Caramel",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "4e139eaa-60ff-4bed-b7d9-15d6a5e2ba26",
+            "sourceColumn": "Caramel",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fruit",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "778b3e45-b960-4734-a3f9-71bfb06fab6f",
+            "sourceColumn": "Fruit",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Citrus",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "7e3c9b68-e79a-4bb2-9c7a-3ede634b8250",
+            "sourceColumn": "Citrus",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Berry",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "becb8ada-48c4-46af-a558-0cfc2384b4fd",
+            "sourceColumn": "Berry",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Cocoa",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "24580de2-93e1-4f6b-84d8-85454be52b19",
+            "sourceColumn": "Cocoa",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Nuts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "43979108-59d9-4c88-8861-760f93079b3c",
+            "sourceColumn": "Nuts",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Rustic",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "f1f0e3ad-5cac-436e-88e1-0bfd59d54fd9",
+            "sourceColumn": "Rustic",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Spice",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "d0b4933e-bf10-4be5-9bc6-2e1d43d53e59",
+            "sourceColumn": "Spice",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "FlavorBody",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "cee67915-2a88-42af-bde0-d1f22bfe1edb",
+            "sourceColumn": "FlavorBody",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "9ba90e50-81a5-4ece-ab5d-492abdd66506",
+            "sourceColumn": "Price",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "URL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7ae1be79-5280-4396-a5a6-46f1c6832806",
+            "sourceColumn": "URL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FlavorCup",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b9178f45-fe2e-4473-bf0e-6293218d0f3c",
+            "sourceColumn": "FlavorCup",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Farm Notes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b4a2ea27-e5ef-4073-97fb-61d04b2246dc",
+            "sourceColumn": "Farm Notes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Latitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "15d910f2-0390-47ca-94ff-38718ef4319e",
+            "sourceColumn": "Latitude",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Longitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5288b80a-019f-4800-8f43-cc97fc597624",
+            "sourceColumn": "Longitude",
+            "summarizeBy": "none"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "67358089-c7bb-4fc2-be89-5cb9bbc3ec48",
+        "partitions": [
+          {
+            "name": "sweetMariasReference",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\tkn\\Downloads\\sweetMarias.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Name\", type text}, {\"Description\", type text}, {\"Process Method\", type text}, {\"Total Score\", type text}, {\"Cultivar\", type text}, {\"Farm Gate\", type text}, {\"Region\", type text}, {\"Processing\", type text}, {\"Drying Method\", type text}, {\"Arrival Date\", type text}, {\"Lot Size\", type text}, {\"Bag Size\", type text}, {\"Packaging\", type text}, {\"Cultivar Detail\", type text}, {\"Grade\", type text}, {\"Appearance\", type text}, {\"Roast Recommendations\", type text}, {\"Type\", type text}, {\"DryFragrance\", type number}, {\"WetAroma\", type number}, {\"Brightness\", Int64.Type}, {\"FlavorCup\", type number}, {\"CupBody\", type number}, {\"Finish\", type number}, {\"Sweetness\", type number}, {\"CleanCup\", type number}, {\"Complexity\", type number}, {\"Uniformity\", type number}, {\"Floral\", type number}, {\"Honey\", type number}, {\"Sugar\", type number}, {\"Caramel\", type number}, {\"Fruit\", type number}, {\"Citrus\", type number}, {\"Berry\", type number}, {\"Cocoa\", type number}, {\"Nuts\", type number}, {\"Rustic\", type number}, {\"Spice\", type number}, {\"FlavorBody\", type number}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type\", {\"Name\"}),",
+                "    #\"Sorted Rows\" = Table.Sort(#\"Removed Duplicates\",{{\"Name\", Order.Ascending}})",
+                "in",
+                "    #\"Sorted Rows\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Cupping Notes",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8d32ac9d-2e69-4cd2-a2c1-99369c349ffc",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Attribute",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f1803b59-eb9b-4337-bb6f-98bc3af5dd79",
+            "sourceColumn": "Attribute",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e79845b1-6ac8-4657-9318-0b581806eaf6",
+            "sourceColumn": "Value",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "5a185dc0-fdcf-47d2-8929-1f59c1e6da4f",
+        "measures": [
+          {
+            "name": "CuppingNotes Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    AVERAGE('Cupping Notes'[Value]), ",
+              "    'Cupping Notes'[Attribute]=MAX('Cupping Notes'[Attribute]),",
+              "    ALLSELECTED('Cupping Notes')",
+              ")"
+            ],
+            "lineageTag": "cabd5600-519e-4d94-9779-dc3c50a9d631"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Cupping Notes",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = sweetMariasReference,",
+                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"Description\", \"Process Method\", \"Total Score\", \"Cultivar\", \"Farm Gate\", \"Region\", \"Processing\", \"Drying Method\", \"Arrival Date\", \"Lot Size\", \"Bag Size\", \"Packaging\", \"Cultivar Detail\", \"Grade\", \"Appearance\", \"Roast Recommendations\", \"Type\", \"Floral\", \"Honey\", \"Sugar\", \"Caramel\", \"Fruit\", \"Citrus\", \"Berry\", \"Cocoa\", \"Nuts\", \"Rustic\", \"Spice\", \"FlavorBody\", \"Price\", \"URL\", \"Farm Notes\", \"Latitude\", \"Longitude\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns\",{{\"CupBody\", \"Body\"}, {\"CleanCup\", \"Clean Cup\"}, {\"WetAroma\", \"Wet Aroma\"}, {\"DryFragrance\", \"Fragrance\"}}),",
+                "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Renamed Columns\", {\"Name\"}, \"Attribute\", \"Value\"),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Unpivoted Columns\",{{\"Value\", type number}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Flavor Profile",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3ea634c2-6ddd-40c5-805a-2a10e9bb3f0f",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Attribute",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "24852e63-c2ce-4e5c-af04-1716077690f0",
+            "sourceColumn": "Attribute",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "88795fc3-6ffb-43e2-b173-842a10a96485",
+            "sourceColumn": "Value",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "3d77e651-1cd9-4d49-975e-1a977fb7ecc5",
+        "measures": [
+          {
+            "name": "FlavorProfileValue",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "var flavorName = max('Flavor Profile'[Name])",
+              "return",
+              "CALCULATE(",
+              "    AVERAGE('Flavor Profile'[Value]), ",
+              "    FILTER('Flavor Profile','Flavor Profile'[Name]=flavorName),",
+              "    'Flavor Profile'[Attribute]=MAX('Flavor Profile'[Attribute])",
+              " )"
+            ],
+            "lineageTag": "2add4afc-c895-421f-a161-39d61b827566"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Flavor Profile",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = sweetMariasReference,",
+                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"Description\", \"Process Method\", \"Total Score\", \"Cultivar\", \"Farm Gate\", \"Region\", \"Processing\", \"Drying Method\", \"Arrival Date\", \"Lot Size\", \"Bag Size\", \"Packaging\", \"Cultivar Detail\", \"Grade\", \"Appearance\", \"Roast Recommendations\", \"Type\", \"DryFragrance\", \"WetAroma\", \"Brightness\", \"FlavorCup\", \"CupBody\", \"Finish\", \"Sweetness\", \"CleanCup\", \"Complexity\", \"Uniformity\", \"Price\", \"URL\",\"Farm Notes\", \"Latitude\", \"Longitude\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns\",{{\"FlavorBody\", \"Body\"}}),",
+                "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Renamed Columns\", {\"Name\"}, \"Attribute\", \"Value\"),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Unpivoted Columns\",{{\"Value\", type number}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "sweetMarias",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e6ca232d-f4ca-41d5-8a14-01df9e84d5c8",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Description",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "62771dd0-bf16-4369-ba18-7f4a9c00d519",
+            "sourceColumn": "Description",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "lineageTag": "5dcd26d6-2246-4d89-9190-f76186dc3aa6",
+            "sourceColumn": "Price",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Process Method",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8709c953-96d8-428e-81d8-2c5b5e4c376d",
+            "sourceColumn": "Process Method",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Total Score",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9d0f9f70-400f-4bf2-aabe-a186133b9a2f",
+            "sourceColumn": "Total Score",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cultivar",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "19770b87-946f-439b-9dad-d458c5608a55",
+            "sourceColumn": "Cultivar",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Farm Gate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a90555d1-b436-4cc4-8bae-b31f2b39573e",
+            "sourceColumn": "Farm Gate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Processing",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f91477c9-a6ac-4a3a-b3b9-5630534fd96c",
+            "sourceColumn": "Processing",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Drying Method",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6aaa603a-7ddc-44fe-964a-74b4ac341159",
+            "sourceColumn": "Drying Method",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Arrival Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ef2357c1-2cfc-4c63-8f47-7d11934974cf",
+            "sourceColumn": "Arrival Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Lot Size",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9f8065f6-4ac4-41d6-9696-02365c89cad0",
+            "sourceColumn": "Lot Size",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Bag Size",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "aa36aefb-5b9a-4b57-b2bd-40c8ce9fdef8",
+            "sourceColumn": "Bag Size",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Packaging",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cf4ed99a-8ec2-4fdb-b992-f330f46a6ae6",
+            "sourceColumn": "Packaging",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cultivar Detail",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6a922b9a-ac5a-4880-ad41-65000be5487f",
+            "sourceColumn": "Cultivar Detail",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Grade",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "56cf05c3-0aa2-4afe-a82e-69966bf634f2",
+            "sourceColumn": "Grade",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Appearance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ebcc9b5f-1d1a-49ee-90f9-12a4679cfab6",
+            "sourceColumn": "Appearance",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Roast Recommendations",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "eaacae1d-ce6f-403d-9af8-8a61b3818e75",
+            "sourceColumn": "Roast Recommendations",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1c4a190b-7898-4be9-bd39-20f0b65c4155",
+            "sourceColumn": "Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ArrivalDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "dateTime",
+            "expression": [
+              "",
+              "var currentMonth = MONTH(TODAY())",
+              "var currentYear = YEAR(TODAY())",
+              "VAR MonthName = ",
+              "// FIND(\" \", [Arrival Date],1,BLANK())",
+              "trim(LEFT([Arrival Date], FIND(\" \", [Arrival Date],1,BLANK())))",
+              "",
+              "",
+              "VAR YearNumber = ",
+              "SWITCH(",
+              "    MID([Arrival Date], FIND(\" \", [Arrival Date],1,BLANK()) + 1, 4),",
+              "    \"N/A\",",
+              "    currentYear-1,",
+              "    \"Curr\",",
+              "    currentYear,",
+              "    CONVERT(MID([Arrival Date], FIND(\" \", [Arrival Date],1,BLANK()) + 1, 4),INTEGER)",
+              ")",
+              "var monthNumber =   ",
+              "SWITCH(",
+              "    MonthName,",
+              "    \"January\", 1,",
+              "    \"February\", 2,",
+              "    \"March\", 3,",
+              "    \"April\", 4,",
+              "    \"May\", 5,",
+              "    \"June\", 6,",
+              "    \"July\", 7,",
+              "    \"August\", 8,",
+              "    \"September\", 9,",
+              "    \"October\", 10,",
+              "    \"November\", 11,",
+              "    \"December\", 12,",
+              "    \"All\", currentMonth",
+              ")",
+              "",
+              "var ArrivalDate = ",
+              "DATE(",
+              "    VALUE(YearNumber), ",
+              "    VALUE(monthNumber), ",
+              "    1",
+              ")",
+              "RETURN ArrivalDate"
+            ],
+            "formatString": "mm/dd/yyyy",
+            "lineageTag": "830fecc6-fd03-45fb-aecc-d454d4b83561",
+            "summarizeBy": "none",
+            "type": "calculated",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_52170026-7412-47f7-a4ed-83cce4d49fb8"
+                },
+                "isDefault": true,
+                "relationship": "589695a7-8011-4f6d-bf2a-ce2219a72e18"
+              }
+            ]
+          },
+          {
+            "name": "URL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "WebUrl",
+            "dataType": "string",
+            "lineageTag": "cbc53ec4-0dcd-4f04-a7f5-c53348e4d1a4",
+            "sourceColumn": "URL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Farm Notes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "31225ee8-1f1a-41d0-b7b2-0c59e7f903d7",
+            "sourceColumn": "Farm Notes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Latitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b108ce34-b70f-46a6-86b8-0fac40e2f517",
+            "sourceColumn": "Latitude",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Longitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c5f5467e-6f87-481c-9064-46e55a2abdc5",
+            "sourceColumn": "Longitude",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "708b27f3-8c5c-48eb-badb-e21ad6023ee1",
+        "partitions": [
+          {
+            "name": "sweetMarias",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = sweetMariasReference,",
+                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"DryFragrance\", \"WetAroma\", \"Brightness\", \"FlavorCup\", \"CupBody\", \"Finish\", \"Sweetness\", \"CleanCup\", \"Complexity\", \"Uniformity\", \"Floral\", \"Honey\", \"Sugar\", \"Caramel\", \"Fruit\", \"Citrus\", \"Berry\", \"Cocoa\", \"Nuts\", \"Rustic\", \"Spice\", \"FlavorBody\", \"Region\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_52170026-7412-47f7-a4ed-83cce4d49fb8",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "8bcabfce-b993-4b05-b125-95a31d741e68",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "aa2ae489-58ea-4482-87eb-40804aed2034",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "b776691c-7472-4eba-aa4a-1fb97b63244b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "8ba35274-2585-432d-8922-d6d4f2d07c3c",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "87be5ef1-dc1e-4579-9cc8-1ecab5dfa399",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "d767cba4-65a7-4c27-87b6-b89e904acc92",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "df23030d-32f1-43f5-9926-888b079eb3d4",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "0ec05a77-9f9f-492b-87fe-4189f8d40759",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "5ae1f2c0-01df-47c1-81be-5cabf1628a7c",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "40734385-0e36-4cd2-8881-7ec65d0cc080",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "916cefc6-16e2-496d-b211-7c9eaf9973a9",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "178de898-96ff-466e-b86e-6b321d191bd3"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "2a5658a5-3243-4f1f-8ea6-f6751a3b805c",
+        "partitions": [
+          {
+            "name": "LocalDateTable_52170026-7412-47f7-a4ed-83cce4d49fb8",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('sweetMarias'[ArrivalDate])), 1, 1), Date(Year(MAX('sweetMarias'[ArrivalDate])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "Countries",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Country",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8919c804-ae14-468b-9082-906058dfb9f7",
+            "sourceColumn": "Country",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "21b08208-8e67-4ca6-9784-561ef1b1c0f2",
+        "partitions": [
+          {
+            "name": "Countries",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Python.Execute(\"import requests#(lf)from bs4 import BeautifulSoup#(lf)import pandas as pd#(lf)#(lf)# URL of the webpage to scrape#(lf)url = \"\"https://www.worldometers.info/geography/alphabetical-list-of-countries/\"\"#(lf)#(lf)# Send a request to the webpage#(lf)response = requests.get(url)#(lf)response.raise_for_status()  # Ensure we notice bad responses#(lf)#(lf)# Parse the webpage content#(lf)soup = BeautifulSoup(response.content, 'html.parser')#(lf)#(lf)# Find the table containing the list of countries#(lf)table = soup.find('table')#(lf)#(lf)# Extract the list of countries#(lf)countries = []#(lf)for row in table.find_all('tr')[1:]:  # Skip the header row#(lf)    columns = row.find_all('td')#(lf)    if columns:#(lf)        country = columns[1].get_text(strip=True)#(lf)        countries.append(country)#(lf)#(lf)# Print the list of countries#(lf)# for country in countries:#(lf)#     print(country)#(lf)#(lf)Countries = pd.DataFrame({'Country':countries})\"),",
+                "    Countries1 = Source{[Name=\"Countries\"]}[Value]",
+                "in",
+                "    Countries1"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Location",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "57ca18bf-205e-469b-a823-c591af298527",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MatchedCountry",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "VAR NameValue = trim(Location[Name] & \" \" & Location[Region])",
+              "VAR CountryMatch = ",
+              "    CALCULATE(",
+              "        LASTNONBLANK('Countries'[Country], 1),",
+              "        FILTER('Countries', SEARCH('Countries'[Country], NameValue, 1, 0) > 0)",
+              "    )",
+              "RETURN ",
+              "SWITCH(",
+              "    TRUE(),",
+              "    CONTAINSSTRING(NameValue, \"Java\") || CONTAINSSTRING(NameValue, \"Flores\") || CONTAINSSTRING(NameValue, \"Sumatra\")  || CONTAINSSTRING(NameValue, \"Sulawesi\"),",
+              "    \"Indonesia\",",
+              "    CONTAINSSTRING(NameValue,\"Timor Leste\"),",
+              "    \"Timor Leste\",",
+              "    CONTAINSSTRING(NameValue,\"Ethiopique\"),",
+              "    \"Ethiopia\",",
+              "    CountryMatch",
+              "    )"
+            ],
+            "lineageTag": "9f5f70b4-50c8-4ce6-a9da-132616851019",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1f4152a3-13d7-4755-bab1-f0f6a736b469",
+            "sourceColumn": "Region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Farm Notes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "403d7c09-d2a1-4cdd-96ec-a407a18ec074",
+            "sourceColumn": "Farm Notes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Latitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2e98cc4b-91aa-40b1-9644-07dd6dea2032",
+            "sourceColumn": "Latitude",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Longitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "74d0ab55-e3e4-4d32-868c-04542fe4a5c4",
+            "sourceColumn": "Longitude",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "4d87e544-98dc-4cb5-a58d-2a3720ca25fd",
+        "partitions": [
+          {
+            "name": "Location",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = sweetMariasReference,",
+                "    #\"Removed Columns1\" = Table.RemoveColumns(Source,{\"URL\", \"Description\", \"Price\", \"Process Method\", \"Total Score\", \"Cultivar\", \"Farm Gate\", \"Processing\", \"Drying Method\", \"Arrival Date\", \"Lot Size\", \"Bag Size\", \"Packaging\", \"Cultivar Detail\", \"Grade\", \"Appearance\", \"Roast Recommendations\", \"Type\", \"DryFragrance\", \"WetAroma\", \"Brightness\", \"FlavorCup\", \"CupBody\", \"Finish\", \"Sweetness\", \"CleanCup\", \"Complexity\", \"Uniformity\", \"Floral\", \"Honey\", \"Sugar\", \"Caramel\", \"Fruit\", \"Citrus\", \"Berry\", \"Cocoa\", \"Nuts\", \"Rustic\", \"Spice\", \"FlavorBody\"}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Removed Columns1\",\" and \",\"\",Replacer.ReplaceText,{\"Region\"}),",
+                "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value\",\" - \",\",\",Replacer.ReplaceText,{\"Region\"}),",
+                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value2\",\", \",\",\",Replacer.ReplaceText,{\"Region\"}),",
+                "    #\"Split Column by Delimiter\" = Table.SplitColumn(#\"Replaced Value1\", \"Region\", Splitter.SplitTextByDelimiter(\",\", QuoteStyle.Csv), {\"Region.1\", \"Region.2\", \"Region.3\", \"Region.4\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Split Column by Delimiter\",{{\"Region.1\", type text}, {\"Region.2\", type text}, {\"Region.3\", type text}, {\"Region.4\", type text}}),",
+                "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Changed Type\", {\"Name\",\"Farm Notes\",\"Latitude\",\"Longitude\"}, \"Attribute\", \"Value\"),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Unpivoted Columns\",{\"Attribute\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns\",{{\"Value\", \"Region\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "sweetMariasLocations",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "35817bff-830d-4f20-b3b8-30d38df0d559",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MatchedCountry",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d6659540-e795-4370-b8a3-c3492ee4cd46",
+            "sourceColumn": "MatchedCountry",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0ac84ecb-83cd-446a-b624-bbf86eb3e2f3",
+            "sourceColumn": "value",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "lat",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "21a64c96-bf0e-426c-9800-a3a34be1f9d8",
+            "sourceColumn": "lat",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "lng",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4258fddc-7074-4c77-a1ab-803f08eb339e",
+            "sourceColumn": "lng",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "1904dfcd-aaeb-4d6b-b184-189e91ba5cf9",
+        "partitions": [
+          {
+            "name": "sweetMariasLocations",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\tkn\\Downloads\\sweetMariasLocations.csv\"),[Delimiter=\",\", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Name\", type text}, {\"MatchedCountry\", type text}, {\"value\", type text}, {\"lat\", type number}, {\"lng\", type number}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "json?address=Ethiopia+Guji+Zone&key=AIzaSyAAwswRQD1nHtQfJC53OS-c24MVHbuPLGQ",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "results.address_components",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d9c5e00f-c7d2-4837-8296-305579c7c411",
+            "sourceColumn": "results.address_components",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "results.formatted_address",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4818e1d3-0a48-4c86-b6f6-41f30fb965f7",
+            "sourceColumn": "results.formatted_address",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "results.geometry.bounds.northeast.lat",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "63a14ef7-96e2-449e-b575-d60bf399b652",
+            "sourceColumn": "results.geometry.bounds.northeast.lat",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.bounds.northeast.lng",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "11cff10b-69f7-4093-aea0-6267c263089b",
+            "sourceColumn": "results.geometry.bounds.northeast.lng",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.bounds.southwest.lat",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "304b92b4-1b57-431e-b3c5-9d90d2789b7f",
+            "sourceColumn": "results.geometry.bounds.southwest.lat",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.bounds.southwest.lng",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "dcbbeff9-acf8-4df3-a57f-72fc2733a05d",
+            "sourceColumn": "results.geometry.bounds.southwest.lng",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.location.lat",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "764d8168-0181-444d-a7ee-3ebae25477d6",
+            "sourceColumn": "results.geometry.location.lat",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.location.lng",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d941325f-dcbd-409d-bb7c-b9048413474b",
+            "sourceColumn": "results.geometry.location.lng",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.location_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d50751de-c247-4656-946a-3d50c4ed1331",
+            "sourceColumn": "results.geometry.location_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "results.geometry.viewport.northeast.lat",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f48a293c-1ca2-45a2-b89e-8f63f797fed1",
+            "sourceColumn": "results.geometry.viewport.northeast.lat",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.viewport.northeast.lng",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "015bd083-2790-496a-bc6e-097223c44a7b",
+            "sourceColumn": "results.geometry.viewport.northeast.lng",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.viewport.southwest.lat",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "24a25c51-68b4-44d3-954a-1efd9a1b6656",
+            "sourceColumn": "results.geometry.viewport.southwest.lat",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.geometry.viewport.southwest.lng",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b09bd90f-4ed8-48a0-9bd8-0bbae7112e56",
+            "sourceColumn": "results.geometry.viewport.southwest.lng",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "results.place_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d2b4f2b1-48d0-49a1-a518-02fb8917c56a",
+            "sourceColumn": "results.place_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "results.types",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "721acf76-bb69-4a14-b993-5b91df014fc7",
+            "sourceColumn": "results.types",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e807fc5b-6481-44e4-a367-72f4697df3be",
+            "sourceColumn": "status",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "49c32854-6722-4cda-a4d2-1536a2095743",
+        "partitions": [
+          {
+            "name": "json?address=Ethiopia+Guji+Zone&key=AIzaSyAAwswRQD1nHtQfJC53OS-c24MVHbuPLGQ",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Json.Document(Web.Contents(\"https://maps.googleapis.com/maps/api/geocode/json?address=Ethiopia+Guji+Zone&key=AIzaSyAAwswRQD1nHtQfJC53OS-c24MVHbuPLGQ\")),",
+                "    #\"Converted to Table\" = Table.FromRecords({Source}),",
+                "    #\"Expanded results\" = Table.ExpandListColumn(#\"Converted to Table\", \"results\"),",
+                "    #\"Expanded results1\" = Table.ExpandRecordColumn(#\"Expanded results\", \"results\", {\"address_components\", \"formatted_address\", \"geometry\", \"place_id\", \"types\"}, {\"results.address_components\", \"results.formatted_address\", \"results.geometry\", \"results.place_id\", \"results.types\"}),",
+                "    #\"Expanded results.geometry\" = Table.ExpandRecordColumn(#\"Expanded results1\", \"results.geometry\", {\"bounds\", \"location\", \"location_type\", \"viewport\"}, {\"results.geometry.bounds\", \"results.geometry.location\", \"results.geometry.location_type\", \"results.geometry.viewport\"}),",
+                "    #\"Expanded results.geometry.bounds\" = Table.ExpandRecordColumn(#\"Expanded results.geometry\", \"results.geometry.bounds\", {\"northeast\", \"southwest\"}, {\"results.geometry.bounds.northeast\", \"results.geometry.bounds.southwest\"}),",
+                "    #\"Expanded results.geometry.bounds.northeast\" = Table.ExpandRecordColumn(#\"Expanded results.geometry.bounds\", \"results.geometry.bounds.northeast\", {\"lat\", \"lng\"}, {\"results.geometry.bounds.northeast.lat\", \"results.geometry.bounds.northeast.lng\"}),",
+                "    #\"Expanded results.geometry.bounds.southwest\" = Table.ExpandRecordColumn(#\"Expanded results.geometry.bounds.northeast\", \"results.geometry.bounds.southwest\", {\"lat\", \"lng\"}, {\"results.geometry.bounds.southwest.lat\", \"results.geometry.bounds.southwest.lng\"}),",
+                "    #\"Expanded results.geometry.location\" = Table.ExpandRecordColumn(#\"Expanded results.geometry.bounds.southwest\", \"results.geometry.location\", {\"lat\", \"lng\"}, {\"results.geometry.location.lat\", \"results.geometry.location.lng\"}),",
+                "    #\"Expanded results.geometry.viewport\" = Table.ExpandRecordColumn(#\"Expanded results.geometry.location\", \"results.geometry.viewport\", {\"northeast\", \"southwest\"}, {\"results.geometry.viewport.northeast\", \"results.geometry.viewport.southwest\"}),",
+                "    #\"Expanded results.geometry.viewport.northeast\" = Table.ExpandRecordColumn(#\"Expanded results.geometry.viewport\", \"results.geometry.viewport.northeast\", {\"lat\", \"lng\"}, {\"results.geometry.viewport.northeast.lat\", \"results.geometry.viewport.northeast.lng\"}),",
+                "    #\"Expanded results.geometry.viewport.southwest\" = Table.ExpandRecordColumn(#\"Expanded results.geometry.viewport.northeast\", \"results.geometry.viewport.southwest\", {\"lat\", \"lng\"}, {\"results.geometry.viewport.southwest.lat\", \"results.geometry.viewport.southwest.lng\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Expanded results.geometry.viewport.southwest\",{{\"results.address_components\", type any}, {\"results.formatted_address\", type text}, {\"results.geometry.bounds.northeast.lat\", type number}, {\"results.geometry.bounds.northeast.lng\", type number}, {\"results.geometry.bounds.southwest.lat\", type number}, {\"results.geometry.bounds.southwest.lng\", type number}, {\"results.geometry.location.lat\", type number}, {\"results.geometry.location.lng\", type number}, {\"results.geometry.location_type\", type text}, {\"results.geometry.viewport.northeast.lat\", type number}, {\"results.geometry.viewport.northeast.lng\", type number}, {\"results.geometry.viewport.southwest.lat\", type number}, {\"results.geometry.viewport.southwest.lng\", type number}, {\"results.place_id\", type text}, {\"results.types\", type any}, {\"status\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
