@@ -1,0 +1,5 @@
+12 hr Python tutorial
+https://www.youtube.com/watch?v=XKHEtdqhLK8py
+
+Getting Started with Python in VS Code
+https://code.visualstudio.com/docs/python/python-tutorial
