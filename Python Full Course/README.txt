@@ -1,0 +1,1 @@
+This folder contains a range of quick exercises I did while learning Python
