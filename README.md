@@ -1,4 +1,7 @@
-### Hi there 👋
+### Welcome
+
+This repo is to show some of the things I'm learning and working on.
+This ranges from Python, R and PowerBI to HTML
 
 <!--
 **tnewhook/tnewhook** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
@@ -6,7 +9,7 @@
 Here are some ideas to get you started:
 
 - 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
+🌱 I’m currently learning Python and R.
 - 👯 I’m looking to collaborate on ...
 - 🤔 I’m looking for help with ...
 - 💬 Ask me about ...
