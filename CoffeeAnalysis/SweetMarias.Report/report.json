@@ -1,0 +1,261 @@
+{
+  "config": "{\"version\":\"5.54\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU05\",\"version\":\"5.54\",\"type\":2}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU05",
+            "path": "BaseThemes/CY24SU05.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Sweet Marias Locations",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "28689a3017d60621b58c",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0787f5e1ee50136ab630\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":567.2727272727273,\"z\":2000,\"width\":1280,\"height\":152.72727272727272}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"sweetMarias.Name\"},{\"queryRef\":\"Location.Farm Notes\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMarias\",\"Type\":0},{\"Name\":\"l\",\"Entity\":\"Location\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Name\"},\"Name\":\"sweetMarias.Name\",\"NativeReferenceName\":\"Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Farm Notes\"},\"Name\":\"Location.Farm Notes\",\"NativeReferenceName\":\"Farm Notes\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Farm Notes\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"205.49252196357992D\"}}}},\"selector\":{\"metadata\":\"sweetMarias.Name\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"1057.5074580211715D\"}}}},\"selector\":{\"metadata\":\"Location.Farm Notes\"}}]}}}",
+          "filters": "[]",
+          "height": 152.73,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 567.27,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"a436b7000a4a0ee75409\",\"layouts\":[{\"id\":0,\"position\":{\"x\":445.97014925373134,\"y\":25.07462686567164,\"z\":1000,\"width\":833.7313432835821,\"height\":541.7910447761194}}],\"singleVisual\":{\"visualType\":\"map\",\"projections\":{\"Y\":[{\"queryRef\":\"Avg(sweetMariasLocations.lat)\"}],\"X\":[{\"queryRef\":\"Avg(sweetMariasLocations.lng)\"}],\"Tooltips\":[{\"queryRef\":\"Min(sweetMariasLocations.MatchedCountry)\"}],\"Size\":[{\"queryRef\":\"CountNonNull(sweetMariasLocations.Name)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMariasLocations\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"MatchedCountry\"}},\"Function\":3},\"Name\":\"Min(sweetMariasLocations.MatchedCountry)\",\"NativeReferenceName\":\"Country\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"lat\"},\"Name\":\"Avg(sweetMariasLocations.lat)\",\"NativeReferenceName\":\"lat\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"lng\"},\"Name\":\"Avg(sweetMariasLocations.lng)\",\"NativeReferenceName\":\"lng\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Name\"}},\"Function\":5},\"Name\":\"CountNonNull(sweetMariasLocations.Name)\",\"NativeReferenceName\":\"Count of Name\"}]},\"columnProperties\":{\"Min(sweetMariasLocations.MatchedCountry)\":{\"displayName\":\"Country\"},\"Min(Location.Latitude)\":{\"displayName\":\"Latitude\"},\"Min(Location.Longitude)\":{\"displayName\":\"Longitude\"}},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 541.79,
+          "width": 833.73,
+          "x": 445.97,
+          "y": 25.07,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"f40aecfa129d0c9a42d8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":75.45454545454545,\"y\":59.99999999999999,\"z\":0,\"width\":300,\"height\":300}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"sweetMariasLocations.MatchedCountry\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMariasLocations\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"MatchedCountry\"},\"Name\":\"sweetMariasLocations.MatchedCountry\",\"NativeReferenceName\":\"MatchedCountry\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMariasLocations\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"MatchedCountry\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'None'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 300.00,
+          "width": 300.00,
+          "x": 75.45,
+          "y": 60.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Coffee",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "512eeb28b722cfc3225a",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"27e65851a118d9b96137\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16.534954407294833,\"y\":171.1854103343465,\"z\":2000,\"width\":377.38601823708206,\"height\":101.15501519756839}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CoffeeStats.Smallest Exports by Country\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CoffeeStats\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Smallest Exports by Country\"},\"Name\":\"CoffeeStats.Smallest Exports by Country\",\"NativeReferenceName\":\"Smallest Exports by Country\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Bottom Exporter'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 101.16,
+          "width": 377.39,
+          "x": 16.53,
+          "y": 171.19,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"2c98e086e630dc6260a3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":489.8507462686567,\"y\":69.85074626865672,\"z\":0,\"width\":624.1791044776119,\"height\":404.77611940298505}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Coffee.Country\"},{\"queryRef\":\"Sum(Coffee.Bean Exports)\"},{\"queryRef\":\"Sum(Coffee.Imports)\"},{\"queryRef\":\"Sum(Coffee.Production)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Coffee\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Bean Exports\"}},\"Function\":0},\"Name\":\"Sum(Coffee.Bean Exports)\",\"NativeReferenceName\":\"Sum of Bean Exports\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Country\"},\"Name\":\"Coffee.Country\",\"NativeReferenceName\":\"Country\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Imports\"}},\"Function\":0},\"Name\":\"Sum(Coffee.Imports)\",\"NativeReferenceName\":\"Sum of Imports\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Production\"}},\"Function\":0},\"Name\":\"Sum(Coffee.Production)\",\"NativeReferenceName\":\"Sum of Production\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Production\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 404.78,
+          "width": 624.18,
+          "x": 489.85,
+          "y": 69.85,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"8e9a821b0bd465c94866\",\"layouts\":[{\"id\":0,\"position\":{\"x\":945.6716417910447,\"y\":420,\"z\":3000,\"width\":300,\"height\":300}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Coffee.Country\"},{\"queryRef\":\"Sum(Coffee.Imports)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Coffee\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Country\"},\"Name\":\"Coffee.Country\",\"NativeReferenceName\":\"Country\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Imports\"}},\"Function\":0},\"Name\":\"Sum(Coffee.Imports)\",\"NativeReferenceName\":\"Sum of Imports\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Imports\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 300.00,
+          "width": 300.00,
+          "x": 945.67,
+          "y": 420.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"c15c262a2cee4610d906\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16.534954407294833,\"y\":60.30395136778116,\"z\":1000,\"width\":448.3890577507599,\"height\":90.45592705167174}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CoffeeStats.Top Country with Exports\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"CoffeeStats\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Top Country with Exports\"},\"Name\":\"CoffeeStats.Top Country with Exports\",\"NativeReferenceName\":\"Top Country with Exports\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Top Country with Exports\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Top Exporter'\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 90.46,
+          "width": 448.39,
+          "x": 16.53,
+          "y": 60.30,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Attributes",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "56899a345eb09883c288",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"11f635dfb14c0320e2b4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":787.6230661040788,\"y\":372.68656716417905,\"width\":451.87060478199714,\"height\":343.8805970149253,\"z\":3}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Cupping Notes.Attribute\",\"active\":true}],\"Y\":[{\"queryRef\":\"Cupping Notes.CuppingNotes Value\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Cupping Notes\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Attribute\"},\"Name\":\"Cupping Notes.Attribute\",\"NativeReferenceName\":\"Attribute\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CuppingNotes Value\"},\"Name\":\"Cupping Notes.CuppingNotes Value\",\"NativeReferenceName\":\"CuppingNotes Value\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CuppingNotes Value\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Cupping Notes'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 343.88,
+          "width": 451.87,
+          "x": 787.62,
+          "y": 372.69,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"7dbd2a8f297680822508\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":134.22492401215806,\"z\":1,\"width\":768.3890577507599,\"height\":296.65653495440733}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Flavor Profile.Name\",\"active\":true}],\"Values\":[{\"queryRef\":\"Sum(Flavor Profile.Value)\"}],\"Columns\":[{\"queryRef\":\"Flavor Profile.Attribute\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Flavor Profile\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Name\"},\"Name\":\"Flavor Profile.Name\",\"NativeReferenceName\":\"Name\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Value\"}},\"Function\":1},\"Name\":\"Sum(Flavor Profile.Value)\",\"NativeReferenceName\":\"Average of Value\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Attribute\"},\"Name\":\"Flavor Profile.Attribute\",\"NativeReferenceName\":\"Attribute\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Name\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"subTotals\":[{\"properties\":{\"columnSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"rowSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Flavor Profile'\"}}}}}],\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Minimal'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 296.66,
+          "width": 768.39,
+          "x": 0.00,
+          "y": 134.22,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"8c26eeda0b54c21c0ce2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":4,\"width\":768.3890577507599,\"height\":141.03343465045594}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"sweetMarias.Name\"},{\"queryRef\":\"sweetMarias.Total Score\"},{\"queryRef\":\"Sum(sweetMarias.Price)\"},{\"queryRef\":\"sweetMarias.Description\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMarias\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Total Score\"},\"Name\":\"sweetMarias.Total Score\",\"NativeReferenceName\":\"Total Score\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Price\"},\"Name\":\"Sum(sweetMarias.Price)\",\"NativeReferenceName\":\"Price\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Name\"},\"Name\":\"sweetMarias.Name\",\"NativeReferenceName\":\"Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description\"},\"Name\":\"sweetMarias.Description\",\"NativeReferenceName\":\"Description\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Price\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"415.328278020635D\"}}}},\"selector\":{\"metadata\":\"sweetMarias.Description\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"171.17629004480213D\"}}}},\"selector\":{\"metadata\":\"sweetMarias.Name\"}}]}}}",
+          "filters": "[]",
+          "height": 141.03,
+          "width": 768.39,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 4.00
+        },
+        {
+          "config": "{\"name\":\"e7aa6cc660c93663072c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":787.6230661040788,\"y\":18.90295358649789,\"z\":0,\"width\":451.8706047819972,\"height\":343.8537271448664,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Flavor Profile.Attribute\",\"active\":true}],\"Y\":[{\"queryRef\":\"Flavor Profile.FilteredValue\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Flavor Profile\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Attribute\"},\"Name\":\"Flavor Profile.Attribute\",\"NativeReferenceName\":\"Attribute\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"FlavorProfileValue\"},\"Name\":\"Flavor Profile.FilteredValue\",\"NativeReferenceName\":\"FlavorProfileValue\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"FlavorProfileValue\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Flavor Profile'\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"innerPadding\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"dataPoint\":[{\"properties\":{\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Flavor Profile'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 343.85,
+          "width": 451.87,
+          "x": 787.62,
+          "y": 18.90,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"ed4fb3b4314b181e8795\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":430.8814589665654,\"z\":2,\"width\":768.3890577507599,\"height\":285.95744680851067}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Cupping Notes.Name\",\"active\":true}],\"Columns\":[{\"queryRef\":\"Cupping Notes.Attribute\",\"active\":true}],\"Values\":[{\"queryRef\":\"Sum(Cupping Notes.Value)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Cupping Notes\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Name\"},\"Name\":\"Cupping Notes.Name\",\"NativeReferenceName\":\"Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Attribute\"},\"Name\":\"Cupping Notes.Attribute\",\"NativeReferenceName\":\"Attribute\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Value\"}},\"Function\":1},\"Name\":\"Sum(Cupping Notes.Value)\",\"NativeReferenceName\":\"Average of Value\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{}}],\"subTotals\":[{\"properties\":{\"columnSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"rowSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Cupping Notes'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 285.96,
+          "width": 768.39,
+          "x": 0.00,
+          "y": 430.88,
+          "z": 2.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Robusta vs Arabica",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "7d746f6fff52b0180696",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"34e8474da5487d1188d1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":423.60446570972886,\"y\":45.933014354066984,\"z\":0,\"width\":697.1610845295055,\"height\":586.9218500797448}}],\"singleVisual\":{\"visualType\":\"lineClusteredColumnComboChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Coffee.Year\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(Coffee.Robusta Production)\"},{\"queryRef\":\"Sum(Coffee.Arabica Production)\"}],\"Y2\":[{\"queryRef\":\"Coffee.RobustaArabicaRatio\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Coffee\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year\"},\"Name\":\"Coffee.Year\",\"NativeReferenceName\":\"Year\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Robusta Production\"}},\"Function\":0},\"Name\":\"Sum(Coffee.Robusta Production)\",\"NativeReferenceName\":\"Sum of Robusta Production\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Arabica Production\"}},\"Function\":0},\"Name\":\"Sum(Coffee.Arabica Production)\",\"NativeReferenceName\":\"Sum of Arabica Production\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"RobustaArabicaRatio\"},\"Name\":\"Coffee.RobustaArabicaRatio\",\"NativeReferenceName\":\"RobustaArabicaRatio\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Robusta Production\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 586.92,
+          "width": 697.16,
+          "x": 423.60,
+          "y": 45.93,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"dad4744c428b5b5d2cb2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":66.34768740031897,\"z\":1000,\"width\":388.89952153110045,\"height\":538.9473684210526}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Coffee.Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Coffee\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year\"},\"Name\":\"Coffee.Year\",\"NativeReferenceName\":\"Sum of Year\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"numericStart\":{\"expr\":{\"Literal\":{\"Value\":\"1969D\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Coffee\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year\"}},\"Right\":{\"Literal\":{\"Value\":\"1969D\"}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 538.95,
+          "width": 388.90,
+          "x": 0.00,
+          "y": 66.35,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "SweetMarias",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "e6a49dda5bb6ac26e77b",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"39d36c11206d60e4da8e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":788.5232067510549,\"y\":382.5597749648383,\"z\":2000,\"width\":450.97046413502113,\"height\":278.14345991561186,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Cupping Notes.CuppingNotes Value\"}],\"Category\":[{\"queryRef\":\"Cupping Notes.Attribute\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Cupping Notes\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CuppingNotes Value\"},\"Name\":\"Cupping Notes.CuppingNotes Value\",\"NativeReferenceName\":\"CuppingNotes Value\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Attribute\"},\"Name\":\"Cupping Notes.Attribute\",\"NativeReferenceName\":\"Attribute\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"CuppingNotes Value\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Flavor Profile'\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"innerPadding\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"dataPoint\":[{\"properties\":{\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Cupping Notes'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 278.14,
+          "width": 450.97,
+          "x": 788.52,
+          "y": 382.56,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"541d13d7e10017080b1c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":187.1641791044776,\"y\":49.25373134328358,\"z\":4000,\"width\":109.25373134328358,\"height\":95.82089552238806,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"sweetMarias.Price\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMarias\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Price\"},\"Name\":\"sweetMarias.Price\",\"NativeReferenceName\":\"Sum of Price\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"numericStart\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMarias\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Price\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Price'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 95.82,
+          "width": 109.25,
+          "x": 187.16,
+          "y": 49.25,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"c30e75e00c0a49d8a0a5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":787.6230661040788,\"y\":18.90295358649789,\"z\":1000,\"width\":451.8706047819972,\"height\":343.8537271448664,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Flavor Profile.Attribute\",\"active\":true}],\"Y\":[{\"queryRef\":\"Flavor Profile.FilteredValue\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Flavor Profile\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Attribute\"},\"Name\":\"Flavor Profile.Attribute\",\"NativeReferenceName\":\"Attribute\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"FlavorProfileValue\"},\"Name\":\"Flavor Profile.FilteredValue\",\"NativeReferenceName\":\"FlavorProfileValue\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"FlavorProfileValue\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Flavor Profile'\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"innerPadding\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"dataPoint\":[{\"properties\":{\"fillTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Flavor Profile'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 343.85,
+          "width": 451.87,
+          "x": 787.62,
+          "y": 18.90,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"c90889a69c760453500c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":68.38915470494418,\"y\":240.89314194577352,\"z\":0,\"width\":665.5183413078149,\"height\":468.5167464114832,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"sweetMarias.Name\",\"active\":true}],\"Values\":[{\"queryRef\":\"Min(sweetMarias.URL)\"},{\"queryRef\":\"Min(sweetMarias.Description)\"},{\"queryRef\":\"Min(sweetMarias.Total Score)\"},{\"queryRef\":\"Min(sweetMarias.Price)\"},{\"queryRef\":\"Min(sweetMarias.ArrivalDate)\"},{\"queryRef\":\"Min(sweetMarias.Arrival Date)\"},{\"queryRef\":\"Min(sweetMarias.Grade)\"},{\"queryRef\":\"Min(sweetMarias.Drying Method)\"},{\"queryRef\":\"Min(sweetMarias.Process Method)\"},{\"queryRef\":\"Min(sweetMarias.Type)\"},{\"queryRef\":\"Min(sweetMarias.Roast Recommendations)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMarias\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Name\"},\"Name\":\"sweetMarias.Name\",\"NativeReferenceName\":\"Name\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Description\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Description)\",\"NativeReferenceName\":\"Description\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Price\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Price)\",\"NativeReferenceName\":\"Price1\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Total Score\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Total Score)\",\"NativeReferenceName\":\"Total Score1\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"URL\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.URL)\",\"NativeReferenceName\":\"Link\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"ArrivalDate\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.ArrivalDate)\",\"NativeReferenceName\":\"ArrivalDate\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Arrival Date\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Arrival Date)\",\"NativeReferenceName\":\"Arrival Date\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Grade\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Grade)\",\"NativeReferenceName\":\"Grade\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Process Method\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Process Method)\",\"NativeReferenceName\":\"Process Method\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Type\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Type)\",\"NativeReferenceName\":\"Type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Roast Recommendations\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Roast Recommendations)\",\"NativeReferenceName\":\"Roast Recommendations\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Drying Method\"}},\"Function\":3},\"Name\":\"Min(sweetMarias.Drying Method)\",\"NativeReferenceName\":\"Drying Method\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Name\"}}}]},\"columnProperties\":{\"Min(sweetMarias.Price)\":{\"displayName\":\"Price\"},\"Min(sweetMarias.Description)\":{\"displayName\":\"Description\"},\"Min(sweetMarias.Total Score)\":{\"displayName\":\"Total Score\"},\"Min(sweetMarias.URL)\":{\"displayName\":\"Link\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"subTotals\":[{\"properties\":{\"rowSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"columnSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"214.9032010354803D\"}}}},\"selector\":{\"metadata\":\"sweetMarias.Name\"}}],\"values\":[{\"properties\":{\"webURL\":{\"expr\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"sweetMarias\"}},\"Property\":\"URL\"}},\"Function\":3}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"sweetMarias.Name\"}},{\"properties\":{\"urlIcon\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 468.52,
+          "width": 665.52,
+          "x": 68.39,
+          "y": 240.89,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"dc99b800088ea6906a51\",\"layouts\":[{\"id\":0,\"position\":{\"x\":48.35820895522388,\"y\":47.46268656716418,\"z\":3000,\"width\":123.5820895522388,\"height\":97.61194029850746,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"sweetMarias.ArrivalDate\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMarias\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"ArrivalDate\"},\"Name\":\"sweetMarias.ArrivalDate\",\"NativeReferenceName\":\"ArrivalDate\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-03-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-08-01T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sweetMarias\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"ArrivalDate\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-03-01T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"ArrivalDate\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-08-02T00:00:00'\"}}}}}}}]}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Arrival Date'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 97.61,
+          "width": 123.58,
+          "x": 48.36,
+          "y": 47.46,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"e8c3649ea05c3a0cb4c1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":296.4179104477612,\"y\":41.19402985074627,\"z\":5000,\"width\":437.910447761194,\"height\":149.55223880597015,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Location.MatchedCountry\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"Location\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"MatchedCountry\"},\"Name\":\"Location.MatchedCountry\",\"NativeReferenceName\":\"MatchedCountry\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Country'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 149.55,
+          "width": 437.91,
+          "x": 296.42,
+          "y": 41.19,
+          "z": 5000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
